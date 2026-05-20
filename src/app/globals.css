@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Italianno&display=swap");
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background-color: #04070f;
+  color: #f3e6c4;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-image:
+    radial-gradient(1200px 700px at 50% -10%, #1f3f80 0%, transparent 60%),
+    radial-gradient(800px 600px at 90% 80%, rgba(192, 135, 61, 0.18) 0%, transparent 65%),
+    radial-gradient(900px 700px at 5% 90%, rgba(92, 214, 227, 0.10) 0%, transparent 70%),
+    linear-gradient(180deg, #070d1e 0%, #04070f 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+.font-script {
+  font-family: "Italianno", cursive;
+}
+
+/* Reveal animation — JS toggles .is-visible on intersect. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Parallax — JS sets --p (0..1) on root scope. */
+.parallax-layer {
+  will-change: transform;
+  transform: translate3d(0, calc(var(--p, 0) * var(--depth, 40) * 1px), 0);
+}
+
+/* Brass shimmer text */
+.text-brass {
+  background: linear-gradient(120deg, #f3d18a 0%, #d9a25a 35%, #fff1c7 55%, #d9a25a 75%, #a0682a 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+
+/* Subtle ocean grain */
+.ocean-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+/* Bubbles */
+.bubble {
+  position: absolute;
+  bottom: -10vh;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(92,214,227,0.25) 60%, transparent 70%);
+  filter: blur(0.5px);
+  animation: bubble linear infinite;
+  pointer-events: none;
+}
+
+/* Focus visible — accessible brass ring */
+:focus-visible {
+  outline: 2px solid #f0b06b;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+a, button {
+  transition: color 0.25s ease, background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .parallax-layer {
+    transform: none !important;
+  }
+  .animate-floaty,
+  .animate-drift,
+  .animate-shimmer,
+  .animate-bubble,
+  .text-brass,
+  .bubble {
+    animation: none !important;
+  }
+}
