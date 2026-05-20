@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ParallaxHero } from "@/components/ParallaxHero";
 import { Bubbles } from "@/components/Bubbles";
 import { SectionDivider } from "@/components/SectionDivider";
 import { ListenCTA, ListenPlaceholder } from "@/components/ListenCTA";
@@ -9,42 +8,61 @@ import { img } from "@/lib/assets";
 export default function HomePage() {
   return (
     <>
-      <ParallaxHero
-        layers={[
-          { src: img("hero-ship", 1600), depth: 18, priority: true },
-          { src: img("kronisk-syg-logo", 960), depth: 44, className: "opacity-30 mix-blend-screen" },
-        ]}
-      >
-        <Bubbles count={18} />
-        <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-5 pt-40 pb-24 text-center sm:pt-48">
-          <p className="reveal font-script text-3xl text-amber-glow drop-shadow">
-            kronisk syg · et fortælleunivers
-          </p>
-          <h1 className="reveal mt-3 font-display text-5xl leading-tight sm:text-7xl">
-            <span className="text-brass">Kronisk Syg</span>
-            <span className="block text-parchment/95 text-3xl sm:text-4xl mt-3 font-normal italic">
-              Et dansk AI-band om at fylde, hvile, danse og blive.
-            </span>
-          </h1>
-          <p className="reveal mt-7 max-w-2xl text-lg leading-relaxed text-parchment/85">
-            Vi laver musik, karakterer og verdener for alle, der lever med
-            kronisk sygdom, neurodivergens og kroppe, der ikke makker ret hver dag.
-            Ikke som kampagne. Som kunst, fest, fortælling og et sted at høre til.
-          </p>
-          <div className="reveal mt-9 flex flex-wrap items-center justify-center gap-3">
-            <ListenCTA label="Lyt til musikken" />
-            <Link
-              href="/fest-i-hvalen"
-              className="rounded-full border border-brass-500/60 px-6 py-3 text-amber-glow hover:bg-brass-500/15"
-            >
-              Gå ombord på Fest i Hvalen →
-            </Link>
-          </div>
-          <p className="reveal mt-10 max-w-xl text-sm text-parchment/65">
-            “Du skal ikke blive mindre, fordi livet blev sværere.”
-          </p>
+      <section className="relative isolate overflow-hidden">
+        <div aria-hidden className="absolute inset-0 -z-10 ocean-grain">
+          <div className="absolute inset-0 bg-ocean-radial" />
+          <div className="absolute -top-32 right-[-10%] h-[80vh] w-[80vh] rounded-full bg-brass-500/15 blur-3xl" />
+          <div className="absolute bottom-[-20%] left-[-10%] h-[60vh] w-[60vh] rounded-full bg-accent-cyan/10 blur-3xl" />
         </div>
-      </ParallaxHero>
+        <Bubbles count={16} />
+        <div className="relative z-10 mx-auto grid max-w-6xl gap-10 px-5 pt-32 pb-24 sm:pt-40 md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-14">
+          <div className="text-left">
+            <p className="reveal font-script text-3xl text-amber-glow drop-shadow">
+              et dansk AI-band & fortælleunivers
+            </p>
+            <h1 className="reveal mt-2 font-display text-6xl leading-[1.02] sm:text-7xl md:text-8xl">
+              <span className="text-brass">Kronisk Syg</span>
+            </h1>
+            <p className="reveal mt-5 max-w-xl font-display text-2xl italic text-parchment/95 sm:text-3xl">
+              Musik om at fylde, hvile, danse og blive — også når livet gør modstand.
+            </p>
+            <p className="reveal mt-6 max-w-xl leading-relaxed text-parchment/85">
+              Vi laver sange, karakterer og verdener for alle, der lever med
+              kronisk sygdom, neurodivergens og kroppe, der ikke makker ret
+              hver dag. Ikke som kampagne — som kunst, fest, fortælling og et
+              sted at høre til.
+            </p>
+            <div className="reveal mt-8 flex flex-wrap items-center gap-3">
+              <ListenCTA label="Lyt til musikken" />
+              <Link
+                href="/fest-i-hvalen"
+                className="rounded-full border border-brass-500/60 px-6 py-3 text-amber-glow hover:bg-brass-500/15"
+              >
+                Gå ombord på Fest i Hvalen →
+              </Link>
+            </div>
+            <p className="reveal mt-10 max-w-md text-sm italic text-parchment/65">
+              “Du skal ikke blive mindre, fordi livet blev sværere.”
+            </p>
+          </div>
+          <div className="reveal relative">
+            <div className="relative mx-auto aspect-square w-[min(78vw,520px)] animate-floaty">
+              <div
+                aria-hidden
+                className="absolute inset-[-8%] rounded-full bg-gradient-to-tr from-brass-500/20 via-accent-pink/10 to-accent-cyan/15 blur-2xl"
+              />
+              <Image
+                src={img("kronisk-syg-logo", 1600)}
+                alt="Kronisk Syg-logoet: et infinity-hjerte i messing og koral over isstykker."
+                fill
+                priority
+                sizes="(min-width: 768px) 520px, 78vw"
+                className="object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <SectionDivider />
 
